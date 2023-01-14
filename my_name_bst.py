@@ -37,32 +37,32 @@ class BinarySearchTreeNode:
                 return False
     
     def in_order_traversal(self):
-            elements = []
+            name = []
             if self.left:
-                elements += self.left.in_order_traversal()
-            elements.append(self.data)
+                name += self.left.in_order_traversal()
+            name.append(self.data)
             if self.right:
-                elements += self.right.in_order_traversal()
-            return elements
+                name += self.right.in_order_traversal()
+            return name
             
     # pre_order_traversal(): perofrms pre order traversal of a binary tree
     def pre_order_traversal(self):
-        elements = [self.data]
+        name = [self.data]
         if self.left:
-            elements += self.left.pre_order_traversal()
+            name += self.left.pre_order_traversal()
         if self.right:
-            elements += self.right.pre_order_traversal()
-        return elements
+            name += self.right.pre_order_traversal()
+        return name
 
     # post_order_traversal(): performs post order traversal of a binary tree
     def post_order_traversal(self):
-        elements = []
+        name = []
         if self.left:
-            elements += self.left.post_order_traversal()
+            name += self.left.post_order_traversal()
         if self.right:
-            elements += self.right.post_order_traversal()
-        elements.append(self.data)
-        return elements
+            name += self.right.post_order_traversal()
+        name.append(self.data)
+        return name
 
     # find_min(): finds minimum element in entire binary tree
     def find_min(self):
@@ -82,18 +82,30 @@ class BinarySearchTreeNode:
         right_sum = self.right.calculate_sum() if self.right else 0
         return self.data + left_sum + right_sum
 
-def build_tree(elements):
-    print("Building tree with these elements:",elements)
-    root = BinarySearchTreeNode(elements[0])
+def build_tree(name):
+    print("Building tree with these name:",name)
+    root = BinarySearchTreeNode(name[0])
 
-    for i in range(1,len(elements)):
-        root.add_child(elements[i])
+    for i in range(1,len(name)):
+        root.add_child(name[i])
     return root
 
 if __name__ == '__main__':
-    my_name = ["A","D","R","I","A","N"]
-    my_name_tree = build_tree(my_name)
+    print("Welcome to Binary Search Tree Mini-Program.\nBelow, you can see my name as data that will make up the binary search tree.\n\nHere's the commands you can use to explore my name-based binary tree.")
+    while True:
+        print("Commands:\n1. Search for specific letter.\n2. Display in in order traversal\n3. Display in pre order traversal\n4. Display in post order traversal\n5. Exit\n")
+        user_choice = int(input(">>> "))
 
-    print("Is letter A included in the list? ", my_name_tree.search("A"))
-    print("Is letter X included in the list? ", my_name_tree.search("X"))
-    print("By in order traversal:",my_name_tree.in_order_traversal())
+        my_name = ["A","D","R","I","A","N"]
+        my_name_tree = build_tree(my_name)
+        if user_choice == 1:
+            user_letter = input("Enter a letter: ").upper()
+            user_search = my_name_tree.search(user_letter)
+            print(f"Is letter {user_letter} included in the list? {user_search}\n")
+        elif user_choice == 2:
+            in_orderT = my_name_tree.in_order_traversal()
+            print(f"By in order traversal: {in_orderT}\n")
+
+
+
+    # print("Is letter A included in the list? ", )
