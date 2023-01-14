@@ -83,7 +83,7 @@ class BinarySearchTreeNode:
         return self.data + left_sum + right_sum
 
 def build_tree(name):
-    print("Building tree with these name:",name)
+    print("Building tree with this letters name:", name)
     root = BinarySearchTreeNode(name[0])
 
     for i in range(1,len(name)):
@@ -105,6 +105,16 @@ if __name__ == '__main__':
         elif user_choice == 2:
             in_orderT = my_name_tree.in_order_traversal()
             print(f"By in order traversal: {in_orderT}\n")
+        elif user_choice == 3:
+            pre_orderT = my_name_tree.pre_order_traversal()
+            print(f"By pre order traversal: {pre_orderT}\n")
+        elif user_choice == 4:
+            post_orderT = my_name_tree.post_order_traversal()
+            print(f"By post order traversal: {post_orderT}\n")
+        elif user_choice == 5:
+            break
+        else:
+            print("[Input out of range. Try again]")
 
 
 
