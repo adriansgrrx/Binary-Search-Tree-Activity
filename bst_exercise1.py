@@ -48,6 +48,11 @@ class BinarySearchTreeNode:
 
             return elements
 
+    def find_max(self):
+        if self.right is None:
+            return self.data
+        return self.right.find_max()
+
 def build_tree(elements):
     print("Building tree with these elements:",elements)
     root = BinarySearchTreeNode(elements[0])
@@ -65,3 +70,5 @@ if __name__ == '__main__':
     print("UK is in the list? ", country_tree.search("UK"))
     print("Sweden is in the list? ", country_tree.search("Sweden"))
     print("In order traversal gives this sorted list:",numbers_tree.in_order_traversal())
+    print("Max:",numbers_tree.find_max())
+    print("Max:",country_tree.find_max())
