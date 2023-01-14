@@ -35,7 +35,30 @@ class BinarySearchTreeNode:
                 return self.right.search(val)
             else:
                 return False
-    
+
+    # delete method for removing an element in the tree
+    def delete(self, val):
+        if val < self.data:
+            if self.left:
+                self.left = self.left.delete(val)
+        elif val > self.data:
+            if self.right:
+                self.right = self.right.delete(val)
+        else:
+            if self.left is None and self.right is None:
+                return None
+            elif self.left is None:
+                return self.right
+            elif self.right is None:
+                return self.left
+
+            # Modify delete method in class BinarySearchTreeNode class to use min element from left subtree.
+            max_val = self.left.find_max()
+            self.data = max_val
+            self.left = self.left.delete(max_val)
+
+        return self
+
     def in_order_traversal(self):
             name = []
             if self.left:
@@ -83,7 +106,7 @@ class BinarySearchTreeNode:
         return self.data + left_sum + right_sum
 
 def build_tree(name):
-    print("Building tree with this letters name:", name)
+    print("Building tree with these letters:", name)
     root = BinarySearchTreeNode(name[0])
 
     for i in range(1,len(name)):
@@ -92,12 +115,11 @@ def build_tree(name):
 
 if __name__ == '__main__':
     print("Welcome to Binary Search Tree Mini-Program.\nBelow, you can see my name as data that will make up the binary search tree.\n\nHere's the commands you can use to explore my name-based binary tree.")
+    my_name = ["A","D","R","I","A","N"]
+    my_name_tree = build_tree(my_name)
     while True:
-        print("Commands:\n1. Search for specific letter.\n2. Display in in order traversal\n3. Display in pre order traversal\n4. Display in post order traversal\n5. Exit\n")
+        print("Commands:\n1. Search for specific letter.\n2. Display in in order traversal.\n3. Display in pre order traversal.\n4. Display in post order traversal.\n5. Remove an element.\n6. Exit.\n")
         user_choice = int(input(">>> "))
-
-        my_name = ["A","D","R","I","A","N"]
-        my_name_tree = build_tree(my_name)
         if user_choice == 1:
             user_letter = input("Enter a letter: ").upper()
             user_search = my_name_tree.search(user_letter)
@@ -112,10 +134,14 @@ if __name__ == '__main__':
             post_orderT = my_name_tree.post_order_traversal()
             print(f"By post order traversal: {post_orderT}\n")
         elif user_choice == 5:
+            in_orderT = my_name_tree.in_order_traversal()
+            print(f"By in order traversal: {in_orderT}")
+            user_del = str(input("Enter the letter you want to remove: ")).upper()
+            my_name_tree.delete(user_del)
+            print(f"After deleting {user_del}: {in_orderT}\n")
+
+        elif user_choice == 6:
+            print("The program is now closed.\n")
             break
         else:
-            print("[Input out of range. Try again]")
-
-
-
-    # print("Is letter A included in the list? ", )
+            print("[Input out of range. Try again]\n")
