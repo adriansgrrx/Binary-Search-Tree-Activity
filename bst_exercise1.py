@@ -40,12 +40,9 @@ class BinarySearchTreeNode:
             elements = []
             if self.left:
                 elements += self.left.in_order_traversal()
-
             elements.append(self.data)
-
             if self.right:
                 elements += self.right.in_order_traversal()
-
             return elements
 
     def pre_order_traversal(self):
@@ -54,6 +51,15 @@ class BinarySearchTreeNode:
             elements += self.left.pre_order_traversal()
         if self.right:
             elements += self.right.pre_order_traversal()
+        return elements
+
+    def post_order_traversal(self):
+        elements = []
+        if self.left:
+            elements += self.left.post_order_traversal()
+        if self.right:
+            elements += self.right.post_order_traversal()
+        elements.append(self.data)
         return elements
 
     def find_max(self):
@@ -77,20 +83,27 @@ def build_tree(elements):
 
     for i in range(1,len(elements)):
         root.add_child(elements[i])
-
     return root
 
 if __name__ == '__main__':
     countries = ["India","Pakistan","Germany", "USA","China","India","UK","USA"]
     country_tree = build_tree(countries)
     numbers_tree = build_tree([17, 4, 1, 20, 9, 23, 18, 34])
-
+    print("*******************************************************************************************************************")
     print("UK is in the list? ", country_tree.search("UK"))
     print("Sweden is in the list? ", country_tree.search("Sweden"))
-    print("In order traversal gives this sorted list:",numbers_tree.in_order_traversal())
-    print("Pre order traversal gives this sorted list:",numbers_tree.pre_order_traversal())
-    print("Max:",numbers_tree.find_max())
-    print("Max:",country_tree.find_max())
-    print("Min:",numbers_tree.find_min())
-    print("Min:",country_tree.find_min())
-    print("Summation:",numbers_tree.calculate_sum())
+    print("*******************************************************************************************************************")
+    print("In order traversal gives this sorted list of the numbers:",numbers_tree.in_order_traversal())
+    print("Pre order traversal gives this sorted list of the numbers:",numbers_tree.pre_order_traversal())
+    print("Pre order traversal gives this sorted list of the numbers:",numbers_tree.pre_order_traversal())
+    print("*******************************************************************************************************************")
+    print("In order traversal gives this sorted list of the countries:",country_tree.in_order_traversal())
+    print("Pre order traversal gives this sorted list of the countries:",country_tree.pre_order_traversal())
+    print("Pre order traversal gives this sorted list of the countries:",country_tree.pre_order_traversal())
+    print("*******************************************************************************************************************")
+    print("Max for Number's Tree:",numbers_tree.find_max())
+    print("Max for Country's Tree:",country_tree.find_max())
+    print("Min for Number's Tree:",numbers_tree.find_min())
+    print("Min for Country's Tree:",country_tree.find_min())
+    print("Summation of the Number's Tree:",numbers_tree.calculate_sum())
+    print("*******************************************************************************************************************")
