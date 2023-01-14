@@ -4,7 +4,7 @@ class BinarySearchTreeNode:
         self.data = data
         self.left = None
         self.right = None
-    
+
     def add_child(self, data):
         if data == self.data: # this condition will prevent having the same child/node
             return
@@ -19,7 +19,7 @@ class BinarySearchTreeNode:
                 self.right.add_child(data)
             else:
                 self.right = BinarySearchTreeNode(data)
-    
+
     def search(self, val):
         if self.data == val:
             return True
@@ -35,7 +35,7 @@ class BinarySearchTreeNode:
                 return self.right.search(val)
             else:
                 return False
-    
+
     # delete method for removing an element in the tree
     def delete(self, val):
         if val < self.data:
@@ -52,9 +52,10 @@ class BinarySearchTreeNode:
             elif self.right is None:
                 return self.left
 
-            min_val = self.right.find_min()
-            self.data = min_val
-            self.right = self.right.delete(min_val)
+            # Modify delete method in class BinarySearchTreeNode class to use min element from left subtree.
+            max_val = self.left.find_max()
+            self.data = max_val
+            self.left = self.left.delete(max_val)
 
         return self
 
@@ -66,7 +67,7 @@ class BinarySearchTreeNode:
             if self.right:
                 elements += self.right.in_order_traversal()
             return elements
-            
+
     # pre_order_traversal(): perofrms pre order traversal of a binary tree
     def pre_order_traversal(self):
         elements = [self.data]
@@ -119,7 +120,7 @@ if __name__ == '__main__':
 
     numbers_tree = build_tree([17, 4, 1, 20, 9, 23, 18, 34])
     numbers_tree.delete(9)
-    print("After deleting 9 ",numbers_tree.in_order_traversal())  
+    print("After deleting 9 ",numbers_tree.in_order_traversal())
 
     numbers_tree = build_tree([17, 4, 1, 20, 9, 23, 18, 34])
     numbers_tree.delete(17)
