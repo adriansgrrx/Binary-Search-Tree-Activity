@@ -114,34 +114,43 @@ def build_tree(name):
     return root
 
 if __name__ == '__main__':
-    print("Welcome to Binary Search Tree Mini-Program.\nBelow, you can see my name as data that will make up the binary search tree.\n\nHere's the commands you can use to explore my name-based binary tree.")
+    print("\nWelcome to Binary Search Tree Mini-Program.\nBelow, you can see my name as data that will make up the binary search tree.\n\nHere's the commands you can use to explore my name-based binary tree.")
     my_name = ["A","D","R","I","A","N"]
     my_name_tree = build_tree(my_name)
     while True:
-        print("Commands:\n1. Search for specific letter.\n2. Display in in order traversal.\n3. Display in pre order traversal.\n4. Display in post order traversal.\n5. Remove an element.\n6. Exit.\n")
-        user_choice = int(input(">>> "))
-        if user_choice == 1:
-            user_letter = input("Enter a letter: ").upper()
-            user_search = my_name_tree.search(user_letter)
-            print(f"Is letter {user_letter} included in the list? {user_search}\n")
-        elif user_choice == 2:
-            in_orderT = my_name_tree.in_order_traversal()
-            print(f"By in order traversal: {in_orderT}\n")
-        elif user_choice == 3:
-            pre_orderT = my_name_tree.pre_order_traversal()
-            print(f"By pre order traversal: {pre_orderT}\n")
-        elif user_choice == 4:
-            post_orderT = my_name_tree.post_order_traversal()
-            print(f"By post order traversal: {post_orderT}\n")
-        elif user_choice == 5:
-            in_orderT = my_name_tree.in_order_traversal()
-            print(f"By in order traversal: {in_orderT}")
-            user_del = str(input("Enter the letter you want to remove: ")).upper()
-            my_name_tree.delete(user_del)
-            print(f"After deleting {user_del}: {in_orderT}\n")
+        try:
+            print("Commands:\n1. Search for specific letter.\n2. Display in in order traversal.\n3. Display in pre order traversal.\n4. Display in post order traversal.\n5. Remove an element.\n6. Exit.\n")
+            user_choice = int(input(">>> "))
+            if user_choice == 1:
+                user_letter = input("Enter a letter: ").upper()
+                user_search = my_name_tree.search(user_letter)
+                print(f"Is letter {user_letter} included in the list? {user_search}\n")
 
-        elif user_choice == 6:
-            print("The program is now closed.\n")
-            break
-        else:
-            print("[Input out of range. Try again]\n")
+            elif user_choice == 2:
+                in_orderT = my_name_tree.in_order_traversal()
+                print(f"By in order traversal: {in_orderT}\n")
+
+            elif user_choice == 3:
+                pre_orderT = my_name_tree.pre_order_traversal()
+                print(f"By pre order traversal: {pre_orderT}\n")
+
+            elif user_choice == 4:
+                post_orderT = my_name_tree.post_order_traversal()
+                print(f"By post order traversal: {post_orderT}\n")
+
+            elif user_choice == 5:
+                my_name = ["A","D","R","I","A","N"]
+                my_name_tree = build_tree(my_name)
+                in_orderT1 = my_name_tree.in_order_traversal()
+                print(f"By in order traversal: {in_orderT1}")
+                user_del = str(input("Enter the letter you want to remove: ")).upper()
+                my_name_tree.delete(user_del)
+                print(f"After deleting {user_del}: {my_name_tree.in_order_traversal()}\n")
+
+            elif user_choice == 6:
+                print("The program is now closed.\n")
+                break
+            else:
+                print("[Input out of range. Try again]\n")
+        except ValueError:
+            print("The program only accpets integers. Try again.\n")
